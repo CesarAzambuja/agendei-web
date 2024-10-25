@@ -1,7 +1,8 @@
-// import {styles} from "./login.styles.css"
+import Navbar from "../../components/navibar/navbar"
 
 function Appointments (){
     return <>
+    <Navbar />
     <h1>Agendamentos</h1>
     </>
 }
