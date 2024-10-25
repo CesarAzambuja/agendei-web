@@ -1,12 +1,7 @@
 import { createRoot } from 'react-dom/client'
+import Login from './pages/login/login'
 
-
-const name = "cesar"
 
 createRoot(document.getElementById('root')).render(
-  <>
-    <h1>Jornada JS {name}</h1>
-    <hr/>  
-  </>
-
+    <Login/>
 )
