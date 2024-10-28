@@ -64,6 +64,8 @@ export const appointments = [
         specialty: "Cirurgia Plástica",
         booking_date: "2024-10-25",
         booking_hour: "08:30",
+        user: "Maria Silva",
+        price: 250
     },
     {
         id_appointment: 2,
@@ -72,6 +74,8 @@ export const appointments = [
         specialty: "Pediatria",
         booking_date: "2024-10-28",
         booking_hour: "15:40",
+        user: "Heber Stein Mazutti",
+        price: 400
     },
     {
         id_appointment: 3,
@@ -80,6 +84,8 @@ export const appointments = [
         specialty: "Clínica Geral",
         booking_date: "2024-11-05",
         booking_hour: "14:15",
+        user: "João Andrade",
+        price: 250
     },
     {
         id_appointment: 4,
@@ -88,14 +94,18 @@ export const appointments = [
         specialty: "Cirurgia Plástica",
         booking_date: "2024-11-18",
         booking_hour: "11:00",
+        user: "Maria Silva",
+        price: 250
     },
     {
         id_appointment: 5,
-        service: "Consulta",
+        service: "Consulta Pediatrica",
         doctor: "Dr. Antônio Almeida Souza",
         specialty: "Pediatria",
         booking_date: "2024-12-02",
         booking_hour: "10:40",
+        user: "Heber Stein Mazutti",
+        price: 150
     },
     {
         id_appointment: 6,
@@ -104,6 +114,8 @@ export const appointments = [
         specialty: "Clínica Geral",
         booking_date: "2024-12-14",
         booking_hour: "17:30",
+        user: "Heber Stein Mazutti",
+        price: 300
     }
 ]
 
@@ -111,7 +123,7 @@ export const doctors_services = [
     {
         id_service: 1,
         description: "Consulta Médica",
-        price: 499.99
+        price: 500
     },
     {
         id_service: 2,
