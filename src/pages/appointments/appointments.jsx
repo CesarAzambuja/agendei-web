@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import Navbar from "../../components/navibar/navbar"
 import {doctors, appointments} from '../../constants/data'
 import Appointment from "../../components/appointment/appointment"
@@ -7,8 +7,10 @@ import'./appointmts.styles.css'
 
 function Appointments (){
 
+    const navigate  = useNavigate()
+
     function ClickEdit(id_appointment){
-        console.log('Editar...' + id_appointment);
+        navigate('/appointments/edit/' + id_appointment)
     }
     function ClickDelete(id_appointment){
         console.log('Deletar...' + id_appointment);
