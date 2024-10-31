@@ -1,9 +1,24 @@
 import './navibar.styles.css'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import  logoBranco from '../../assets/logo-white.png'
+import api from '../../constants/api'
 
  
  function Navbar() {
+
+    const navigate = useNavigate()
+              
+
+    function Logout(){
+        
+        localStorage.removeItem("sessionToken")  
+        localStorage.removeItem("sessionId")  
+        localStorage.removeItem("sessionEmail")  
+        localStorage.removeItem("sessionName")  
+        api.defaults.headers.common['Authorization'] = ""
+        navigate('/')
+    }
+
     return <nav className="navbar fixed-top navbar-expand-lg bg-primary " data-bs-theme="dark">
         <div className='container-fluid'>
             <Link className='navbar-brand' to="/appointments">
@@ -28,12 +43,12 @@ import  logoBranco from '../../assets/logo-white.png'
                     <li className="nav-item">
                         <div className="btn-group">
                             <button className="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                César Azambuja
+                                {localStorage.getItem("sessionName")}
                             </button>
                             <ul className="dropdown-menu dropdown-menu-end">
                                 <li><Link className="dropdown-item" to="/">Meu Perfil</Link></li>
                                 <li><hr className="dropdown-divider" ></hr></li>
-                                <li><Link className="dropdown-item" to="/">Desconectar</Link></li>
+                                <li><a className="dropdown-item" onClick={Logout}>Desconectar</a></li>
                             </ul>
                         </div>
                     </li>
