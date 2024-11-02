@@ -5,6 +5,8 @@ import Appointment from "../../components/appointment/appointment"
 import'./appointmts.styles.css'
 import { useEffect, useState } from "react"
 import api from "../../constants/api"
+import { confirmAlert } from "react-confirm-alert"
+import 'react-confirm-alert/src/react-confirm-alert.css'; // Import css
 
 
 function Appointments (){
@@ -20,7 +22,20 @@ function Appointments (){
         navigate('/appointments/edit/' + id_appointment)
     }
     function ClickDelete(id_appointment){
-        console.log('Deletar...' + id_appointment);
+        confirmAlert({
+            title: "Cancelamento",
+            message: "Deseja realmente cancelar esse agendamento?",
+            buttons:[
+                {
+                    label: "Sim",
+                    onClick: () => DeleteAppointment(id_appointment)
+                },
+                {
+                    label: "Não",
+                    onClick: () => {}
+                }
+            ]
+        })
     }
 
     function ChangeDoctor(e){
@@ -37,13 +52,38 @@ function Appointments (){
               }
           } 
         catch (error) {
-              if(error.response?.data.error)
-              alert(error.response?.data.error)
-          else
+              if(error.response?.data.error){
+                if(error.response.status == 401)
+                    return navigate("/")
+                alert(error.response?.data.error)
+            
+              }   
+              else
               alert("Erro carregar a lista de médicos. Tente novamente mais tarde.")
               console.log(error);  
         }
   }
+
+  async function DeleteAppointment(id){
+    try {
+          const response = await api.delete('/appointments/' + id)
+
+          if(response.data){
+              LoadAppointments()
+          }
+      } 
+    catch (error) {
+          if(error.response?.data.error){
+            if(error.response.status == 401)
+                return navigate("/")
+            alert(error.response?.data.error)
+        
+          }   
+          else
+          alert("Erro ao excluir agendamento.")
+          console.log(error);  
+    }
+}
 
 
     async function LoadAppointments(){
@@ -62,10 +102,11 @@ function Appointments (){
             } 
           catch (error) {
                 if(error.response?.data.error){
+                    if(error.response.status == 401)
+                       return navigate("/")
                 alert(error.response?.data.error)
                 
-                if(error.response.status == 401)
-                    navigate("/")
+
             }   
             else
                 alert("Erro ao carregar os Agendamentos. Tente novamente mais tarde.")
